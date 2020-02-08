@@ -22,7 +22,7 @@ body {
     border: solid 1px #c7b299;
     box-sizing: border-box;
 }
-.tab {
+.tabs {
     display: flex;
 }
 .header {
