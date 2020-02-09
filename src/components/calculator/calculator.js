@@ -5,21 +5,21 @@ import Tabs from '../tabs';
 import InputText from '../input-text';
 import InputBtnOrNumber from '../input-btn-or-number';
 
-const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoan, estimatedAPR, approxCreditScore, creditScoreValue, termMonthLoan, onSwitchTab, onInputChange }) => {
+const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoan, estimatedAPR, approxCreditScore, creditScoreValue, termMonthLoan, termMonthLease, annualMiles, onSwitchTab, onInputChange, getTermMonthLoan, getApproxValue, getApproxValueLease, getMonthValueLease, getAnnualMiles }) => {
 
     const buttonsASC = [
-        {name:['Poor','639 or less'], label:'1.2'},
-        {name:['Fair','640-699'], label:'1.05'},
-        {name:['Good','700-749'], label:'1'},
-        {name:['Excellent','750-900'], label:'0.95'}
+        {name:['Poor','639 or less'], label:1.2},
+        {name:['Fair','640-699'], label:1.05},
+        {name:['Good','700-749'], label:1},
+        {name:['Excellent','750-900'], label:0.95}
       ]
     const buttonsMonth = [
-    {name:['12'], label:'12'},
-    {name:['24'], label:'24'},
-    {name:['36'], label:'36'},
-    {name:['48'], label:'48'},
-    {name:['72'], label:'72'},
-    {name:['84'], label:'84'}
+    {name:['12'], label:12},
+    {name:['24'], label:24},
+    {name:['36'], label:36},
+    {name:['48'], label:48},
+    {name:['72'], label:72},
+    {name:['84'], label:84}
     ]  
   return isLoan ? (
     <form className="calculator">
@@ -31,6 +31,7 @@ const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoa
                 <InputBtnOrNumber isLoan = {isLoan}
                                   header = 'Term (Month)'
                                   filter = { termMonthLoan }
+                                  getBtnValue = { getTermMonthLoan }
                                   buttonsArr = {buttonsMonth}/>
                 <InputText isLoan = {isLoan}
                         value = { tradeInValue }
@@ -45,6 +46,7 @@ const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoa
                 <InputBtnOrNumber isLoan = {isLoan}
                                   header = 'Approx. Credit Score'
                                   filter = { creditScoreValue }
+                                  getBtnValue = { getApproxValue }
                                   buttonsArr = {buttonsASC}
                                   clazz = 'btn-apr'/>
                 <InputText isLoan = {isLoan}
@@ -76,7 +78,8 @@ const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoa
                                     min = '600'
                                     max = '900'
                                     step = '50'
-                                    defaultValue ='750'/>
+                                    value ={approxCreditScore}
+                                    getInputValue = { getApproxValueLease }/>
                 <InputText isLoan = {isLoan}
                            value = { tradeInValue }
                            stateVariableName = 'tradeInValue'
@@ -87,7 +90,8 @@ const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoa
                                     min = '24'
                                     max = '48'
                                     step = '12'
-                                    defaultValue ='36'/>        
+                                    value = {termMonthLease}
+                                    getInputValue = { getMonthValueLease }/>        
                 <InputText isLoan = {isLoan}
                     value = { downPayment }
                     stateVariableName = 'downPayment'
@@ -98,7 +102,8 @@ const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoa
                                     min = '10000'
                                     max = '15000'
                                     step = '1000'
-                                    defaultValue ='12000'/>  
+                                    value ={annualMiles}
+                                    getInputValue = { getAnnualMiles }/>  
             </div>
           </div>
       </form>;

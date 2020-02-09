@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import './input-btn-or-number.css';
 
 export default class InputBtnOrNumber extends Component {
-    
+  getInputValue = (event) => {
+    const term  = event.target.value;
+    this.props.getInputValue(term);
+  };  
   render() {
-    const { isLoan, header, min, max, step, defaultValue, buttonsArr, filter, clazz } = this.props;
+    const { isLoan, header, min, max, step, value, buttonsArr, filter, clazz, getBtnValue } = this.props;
     let buttons =[];
     if (isLoan) {
       buttons = buttonsArr.map(({ name, label }) => {
@@ -12,7 +15,11 @@ export default class InputBtnOrNumber extends Component {
         const [first, second] = name;
         if(filter == label) {clazzBtn += ' active'}
         return (
-          <button type="button" className={clazzBtn} key={label}>{first}<br />{second}</button>
+          <button type="button"
+                  onClick =  {() => getBtnValue(label) }
+                  className={clazzBtn}
+                  key={label}>
+                  {first}<br />{second}</button>
         );
       });
     }
@@ -26,7 +33,13 @@ export default class InputBtnOrNumber extends Component {
     ) : (
         <div className="lease-item">
             <h2 className="input-header">{header}</h2>
-            <input className="lease-input" type="number" min = {min} max = {max} step = {step} defaultValue = {defaultValue} />
+            <input className="lease-input"
+                   type="number"
+                  min = {min} 
+                  max = {max} 
+                  step = {step} 
+                  value = {value}
+                  onChange ={this.getInputValue}/>
         </div>
     );
   }
