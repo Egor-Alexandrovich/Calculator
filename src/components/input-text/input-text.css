@@ -1,0 +1,34 @@
+.lease-item {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 44px 0.5rem;
+    color: #838383;
+}
+.input-header {
+    font-size: 2rem;
+    padding-bottom: 0.5rem;
+}
+.lease-input {
+    width: 100%;
+    border: 1px solid #c7b299;
+    border-radius: 5px;
+    font-size: 3.5rem;
+    font-family: "Roboto", sans-serif;
+    color: #838383;
+}
+.lease-input:focus{
+    outline: #c7b299 solid 1px;
+}
+.loan-input {
+    width: 20%;
+    border: 1px solid #c7b299;
+    border-radius: 5px;
+    font-size: 2.2rem;
+    font-family: "Roboto", sans-serif;
+    color: #838383;
+}
+.loan-item-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

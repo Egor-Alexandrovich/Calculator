@@ -1,0 +1,19 @@
+.tabs {
+    display: flex;
+}
+.header {
+    width: 50%;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+    border: 2px solid #fafafa;
+}
+.header:hover {
+    color: #007de1;
+    border: 2px solid #007de1;
+}
+.header.active {
+    background-color: #0067b9;
+    color: #c7b299;
+}

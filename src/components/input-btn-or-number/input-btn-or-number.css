@@ -1,0 +1,66 @@
+.lease-item {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 44px 0.5rem;
+    color: #838383;
+}
+.input-header {
+    font-size: 2rem;
+    padding-bottom: 0.5rem;
+}
+.lease-input {
+    width: 100%;
+    border: 1px solid #c7b299;
+    border-radius: 5px;
+    font-size: 3.5rem;
+    font-family: "Roboto", sans-serif;
+    color: #838383;
+}
+.lease-input:focus{
+    outline: #c7b299 solid 1px;
+}
+.loan-item {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 0.5rem;
+    color: #838383;
+}
+.btn-wrapper {
+    display: flex;
+    padding: 5px 0;
+}
+
+.btn {
+    width: 17%;
+    position: relative;
+    padding: 5px 10px;
+    background: #ffffff;
+    box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #000;
+    border-radius: 5px;
+    border: 2px solid #7c7d7e;
+    color: #c7b299;
+    cursor: pointer;
+    font-size: 2rem;
+}
+.btn:hover {
+    border: 2px solid #0067b9;
+    color: #0067b9;
+}
+.btn:active {
+    top: .1em;
+    left: .1em; 
+    box-shadow: 0 0 0 60px rgba(0,0,0,.05) inset;
+}
+.btn.active {
+    background-color: #0067b9;
+    color: #c7b299;
+}
+.btn-apr {
+    width: 25%;
+    font-size: 1rem;
+}
+@media (max-width:720px) {
+    .lease-item {
+        padding: 10px 0.5rem;
+    }
+}
