@@ -1,29 +1,36 @@
 import React from 'react';
 import './info-card.css';
 
-const InfoCard = ({dataInfoCard}) => {
+const InfoCard = ({dealerInfo, isLoan, monthlyPaymentLease, monthlyPaymentLoan, taxesLease, taxesLoan}) => {
+    const { dataInfoCard } = dealerInfo;
+    const { msrp, VehicleName, DealerName, DealerPhoneNumber, DealerRating } = dataInfoCard;
+    let MonthlyPayment = '';
+    let taxes = '';
+    isLoan ? MonthlyPayment = monthlyPaymentLoan : MonthlyPayment = monthlyPaymentLease;
+    isLoan ? taxes = taxesLoan : taxes = taxesLease;
+    taxes = taxes.join('');
   return (
         <div className="info-card">
             <div className="msrp info-card-item">
                 <span>MSRP:</span>
-                <span>${dataInfoCard}</span>
+                <span>${msrp}</span>
             </div>
             <div className="vehicle-name info-card-item">
                 <span>Vehicle name:</span>
-                <span>Dodge Viper</span>
+                <span>{VehicleName}</span>
             </div>
             <div className="monthly-payment info-card-item">
                 <span>Monthly payment:</span>
-                <span>$ 850</span>
+                <span>$ {MonthlyPayment}</span>
             </div>
             <div className="taxes info-card-item">
                 <span>taxes:</span>
-                <span>$ 3000</span>
+                <span>$ {taxes}</span>
             </div>
             <div className="dealer-info">
-                <span className="dealer-info-item">Dealer name: Eric Kripke</span>
-                <span className="dealer-info-item">Dealer phone number: <span className="tel">+ 800 795 795</span></span>
-                <span className="dealer-info-item">Dealer rating: 80%</span>
+                <span className="dealer-info-item">Dealer name: {DealerName}</span>
+                <span className="dealer-info-item">Dealer phone number: <span className="tel">{DealerPhoneNumber}</span></span>
+                <span className="dealer-info-item">Dealer rating: {DealerRating}%</span>
             </div>
         </div>
   );

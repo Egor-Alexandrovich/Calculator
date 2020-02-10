@@ -3,11 +3,13 @@ import './app.css';
 import Calculator from '../calculator';
 import InfoCard from '../info-card';
 import {dataInfoCard} from '../../utils/data-info-card';
+import {sum} from '../../utils/sum'
 
-console.log(dataInfoCard);
+
+
 export default class App extends Component { 
     state = {
-        dataInfoCard:dataInfoCard.msrp,
+        dealerInfo:{dataInfoCard},
         isLoan: true,
         tradeInValue:0,
         downPayment:0,
@@ -81,7 +83,15 @@ export default class App extends Component {
     }
     render() {
       console.log(this.state);
-      const { isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoan, estimatedAPR, approxCreditScore, creditScoreValue, termMonthLoan, termMonthLease, annualMiles, dataInfoCard}  = this.state;
+     
+      const { isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoan, estimatedAPR, approxCreditScore, creditScoreValue, termMonthLoan, termMonthLease, annualMiles, dealerInfo}  = this.state;
+      const { dataInfoCard } = dealerInfo;
+      const { msrp } = dataInfoCard;
+      const monthlyPaymentLease = Math.round(((msrp - tradeInValue - downPayment) * annualMiles * creditScoreValue) / (10000 * termMonthLease)); 
+      const monthlyPaymentLoan = Math.round((msrp - tradeInValue - downPayment)*(termMonthLoan * creditScoreValue * estimatedAPR));
+      const taxesLease = String(zipCodeLease).split('').map(num => num * 11);
+      const taxesLoan = String(zipCodeLoan).split('').map(num => num * 11);
+      console.log(monthlyPaymentLease, monthlyPaymentLoan)
       return (
         <div className="app">
             <Calculator
@@ -103,7 +113,12 @@ export default class App extends Component {
             getTermMonthLoan = { this.getTermMonthLoan }
             onInputChange = { this.onInputChange }
             onSwitchTab = { this.onSwitchTab }/>
-            <InfoCard dataInfoCard = {dataInfoCard}/>
+            <InfoCard dealerInfo = {dealerInfo}
+                      isLoan = { isLoan }
+                      monthlyPaymentLease = { monthlyPaymentLease }
+                      monthlyPaymentLoan = { monthlyPaymentLoan }
+                      taxesLease = { taxesLease }
+                      taxesLoan = { taxesLoan }/>
         </div>
 
         

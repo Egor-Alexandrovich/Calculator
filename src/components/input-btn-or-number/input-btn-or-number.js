@@ -3,7 +3,7 @@ import './input-btn-or-number.css';
 
 export default class InputBtnOrNumber extends Component {
   getInputValue = (event) => {
-    const term  = event.target.value;
+    const term  = parseInt(event.target.value);
     this.props.getInputValue(term);
   };  
   render() {

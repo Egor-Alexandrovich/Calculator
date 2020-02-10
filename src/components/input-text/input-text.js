@@ -3,8 +3,12 @@ import './input-text.css';
 
 export default class InputText extends Component {
   onInputChange = (event) => {
-    const term  = event.target.value;
-    this.props.onInputChange(term, this.props.stateVariableName);
+    const res = /^[0-9]{1,6}$/.test(event.target.value);
+    console.log(res, ' ', event.target.value);
+    if(res){
+      const term  = parseInt(event.target.value);
+      this.props.onInputChange(term, this.props.stateVariableName);
+    }
   };
   render() {
     const { isLoan, headerLabel, value } = this.props;
