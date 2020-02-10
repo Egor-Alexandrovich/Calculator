@@ -1,4 +1,5 @@
 .lease-item {
+    position: relative;
     width: 50%;
     box-sizing: border-box;
     padding: 44px 0.5rem;
@@ -10,9 +11,10 @@
 }
 .lease-input {
     width: 100%;
+    margin-bottom: 5px;
     border: 1px solid #c7b299;
     border-radius: 5px;
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     font-family: "Roboto", sans-serif;
     color: #838383;
 }
@@ -20,7 +22,7 @@
     outline: #c7b299 solid 1px;
 }
 .loan-input {
-    width: 20%;
+    width: 100%;
     border: 1px solid #c7b299;
     border-radius: 5px;
     font-size: 2.2rem;
@@ -31,4 +33,45 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.error-measage {
+    position: absolute;
+    left:20px;
+    padding: 5px;
+    font-size: 8px;
+    box-sizing: border-box;
+    border: 1px solid #c7b299;
+    border-radius: 13px;
+}
+.currency {
+    margin-right: 6px;
+    margin-left: 3px;
+    font-size: 2.2rem;
+    font-family: "Roboto", sans-serif;
+    color: #838383;
+}
+.currency-position {
+    flex-direction: row-reverse;
+}
+.input-wrapper {
+    width: 25%;
+    display: flex;
+    align-items: center;
+}
+.lease-item>.input-wrapper {
+    width: 100%;
+}
+.lease-item .currency {
+    font-size: 3.2rem;
+    margin-bottom: 6px;
+}
+@media (max-width:720px) {
+    .lease-item {
+        padding: 25px 0.5rem;
+    }
+}
+@media (max-width:420px) {
+    .error-measage {
+       font-size: 7px;
+    }
 }

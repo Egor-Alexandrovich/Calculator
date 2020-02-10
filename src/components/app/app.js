@@ -106,6 +106,7 @@ export default class App extends Component {
             termMonthLoan = { termMonthLoan }
             termMonthLease = { termMonthLease }
             annualMiles = { annualMiles }
+            msrp = { msrp }
             getApproxValueLease = {this.getApproxValueLease}
             getMonthValueLease = {this.getMonthValueLease} 
             getAnnualMiles = {this.getAnnualMiles}

@@ -5,7 +5,7 @@ import Tabs from '../tabs';
 import InputText from '../input-text';
 import InputBtnOrNumber from '../input-btn-or-number';
 
-const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoan, estimatedAPR, approxCreditScore, creditScoreValue, termMonthLoan, termMonthLease, annualMiles, onSwitchTab, onInputChange, getTermMonthLoan, getApproxValue, getApproxValueLease, getMonthValueLease, getAnnualMiles }) => {
+const Calculator = ({isLoan, msrp, tradeInValue, downPayment, zipCodeLease, zipCodeLoan, estimatedAPR, approxCreditScore, creditScoreValue, termMonthLoan, termMonthLease, annualMiles, onSwitchTab, onInputChange, getTermMonthLoan, getApproxValue, getApproxValueLease, getMonthValueLease, getAnnualMiles }) => {
 
     const buttonsASC = [
         {name:['Poor','639 or less'], label:1.2},
@@ -35,11 +35,15 @@ const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoa
                                   buttonsArr = {buttonsMonth}/>
                 <InputText isLoan = {isLoan}
                         value = { tradeInValue }
+                        msrp = {msrp}
+                        currency = {'$'}
                         stateVariableName = 'tradeInValue'
                         onInputChange = { onInputChange }
                         headerLabel ='Trade-in-Value'/>
                 <InputText isLoan = {isLoan}
                     value = { downPayment }
+                    msrp = {msrp}
+                    currency = {'$'}
                     stateVariableName = 'downPayment'
                     onInputChange = { onInputChange }
                     headerLabel ='Down Payment'/>
@@ -56,6 +60,8 @@ const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoa
                         headerLabel ='Home ZIP-Code'/>
                 <InputText isLoan = {isLoan}
                         value = { estimatedAPR }
+                        currency = {'%'}
+                        currencyPosition = {'currency-position'}
                         stateVariableName = 'estimatedAPR'
                         onInputChange = { onInputChange }
                         headerLabel ='Estimated APR'/>
@@ -82,6 +88,8 @@ const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoa
                                     getInputValue = { getApproxValueLease }/>
                 <InputText isLoan = {isLoan}
                            value = { tradeInValue }
+                           msrp ={msrp}
+                           currency = {'$'}
                            stateVariableName = 'tradeInValue'
                            onInputChange = { onInputChange }
                            headerLabel ='Trade-in-Value'/>
@@ -94,6 +102,8 @@ const Calculator = ({isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoa
                                     getInputValue = { getMonthValueLease }/>        
                 <InputText isLoan = {isLoan}
                     value = { downPayment }
+                    msrp ={msrp}
+                    currency = {'$'}
                     stateVariableName = 'downPayment'
                     onInputChange = { onInputChange }
                     headerLabel ='Down Payment'/>

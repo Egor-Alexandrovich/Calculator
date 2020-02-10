@@ -20,6 +20,7 @@
     outline: #c7b299 solid 1px;
 }
 .loan-item {
+    position: relative;
     width: 100%;
     box-sizing: border-box;
     padding: 10px 0.5rem;
@@ -59,8 +60,18 @@
     width: 25%;
     font-size: 1rem;
 }
-@media (max-width:720px) {
-    .lease-item {
-        padding: 10px 0.5rem;
+.loan-item > .error-measage {
+    position: absolute;
+    left:240px;
+    padding: 5px;
+    font-size: 8px;
+    box-sizing: border-box;
+    border: 1px solid #c7b299;
+    border-radius: 13px;
+}
+@media (max-width:520px) {
+    .loan-item > .error-measage {
+       left:0px;
+       bottom: -4px;
     }
 }
