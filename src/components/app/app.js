@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import './app.css';
 import Calculator from '../calculator';
 import InfoCard from '../info-card';
-import { dataInfoCard } from '../../utils/data-info-card';
 import { getIpInfo } from '../../utils/get-ip-info';
-// import '../../data-dealer.json';
+import Spinner from '../spinner';
 
 let currentState = {
   dealerInfo: {
@@ -13,7 +12,8 @@ let currentState = {
     DealerName: 'Eric Kripke',
     DealerPhoneNumber: '+ 800 795 795',
     DealerRating: 80
-},
+  },
+  loading: true,
   isLoan: true,
   tradeInValue:0,
   downPayment:0,
@@ -42,6 +42,7 @@ export default class App extends Component {
       if (!localStorage.getItem('currentState')) {
         getIpInfo().then((resp) => {
           this.setState( {
+            loading:false,
             zipCodeLease:resp.postal,
             zipCodeLoan:resp.postal 
           });
@@ -53,6 +54,7 @@ export default class App extends Component {
         .then((response) => response.json())
         .then((body) => {
           this.setState( {
+            loading:false,
             dealerInfo:{...body} 
           });
         });
@@ -119,15 +121,16 @@ export default class App extends Component {
     render() {
       console.log(this.state);
       localStorage.setItem('currentState', JSON.stringify(this.state));
-      const { isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoan, estimatedAPR, approxCreditScore, creditScoreValue, termMonthLoan, termMonthLease, annualMiles, dealerInfo}  = this.state;
+      const { isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoan, estimatedAPR, approxCreditScore, creditScoreValue, termMonthLoan, termMonthLease, annualMiles, dealerInfo, loading}  = this.state;
+      if(loading) { return <Spinner /> }
       const { msrp } = dealerInfo;
       const monthlyPaymentLease = Math.round(((msrp - tradeInValue - downPayment) * annualMiles * creditScoreValue) / (10000 * termMonthLease)); 
-      const monthlyPaymentLoan = Math.round((msrp - tradeInValue - downPayment)*(termMonthLoan * creditScoreValue * estimatedAPR));
+      const monthlyPaymentLoan = Math.round((msrp - tradeInValue - downPayment)/(termMonthLoan * creditScoreValue * (1 + estimatedAPR/100)));
       const taxesLease = String(zipCodeLease).split('').map(num => num * 11);
       const taxesLoan = String(zipCodeLoan).split('').map(num => num * 11);
-      console.log(monthlyPaymentLease, monthlyPaymentLoan)
       return (
         <div className="app">
+            
             <Calculator
             isLoan = {isLoan}
             tradeInValue = {tradeInValue}
