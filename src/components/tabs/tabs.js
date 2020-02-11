@@ -10,12 +10,12 @@ export default class Tabs extends Component {
     isLoan ? classNameLoan +=' active':classNameLease+=' active';
     return (
     <div className="tabs">
-        <div className={ classNameLoan }
+        <button type="button" className={ classNameLoan }
              onClick =  {() => onSwitchTab('loan') } >
-             Loan</div>
-        <div className={ classNameLease }
+             Loan</button>
+        <button type="button" className={ classNameLease }
         onClick =  { () => onSwitchTab('lease') } >
-        Lease</div>
+        Lease</button>
     </div>
     );
   }
