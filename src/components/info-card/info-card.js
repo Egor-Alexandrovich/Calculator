@@ -2,8 +2,7 @@ import React from 'react';
 import './info-card.css';
 
 const InfoCard = ({dealerInfo, isLoan, monthlyPaymentLease, monthlyPaymentLoan, taxesLease, taxesLoan}) => {
-    const { dataInfoCard } = dealerInfo;
-    const { msrp, VehicleName, DealerName, DealerPhoneNumber, DealerRating } = dataInfoCard;
+    const { msrp, VehicleName, DealerName, DealerPhoneNumber, DealerRating } = dealerInfo;
     let MonthlyPayment = '';
     let taxes = '';
     isLoan ? MonthlyPayment = monthlyPaymentLoan : MonthlyPayment = monthlyPaymentLease;
