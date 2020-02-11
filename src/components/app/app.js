@@ -2,25 +2,47 @@ import React, { Component } from 'react';
 import './app.css';
 import Calculator from '../calculator';
 import InfoCard from '../info-card';
-import {dataInfoCard} from '../../utils/data-info-card';
-import {sum} from '../../utils/sum'
+import { dataInfoCard } from '../../utils/data-info-card';
+import { getIpInfo } from '../../utils/get-ip-info';
+// import '../../data-dealer.json';
 
+let currentState = {
+  dealerInfo:{dataInfoCard},
+  isLoan: true,
+  tradeInValue:0,
+  downPayment:0,
+  zipCodeLease:"0",
+  zipCodeLoan:"0",
+  estimatedAPR: 0,
+  approxCreditScore: 750,
+  creditScoreValue : 0.95,
+  termMonthLoan: 24,
+  termMonthLease: 36,
+  annualMiles: 12000
+};
+//  get the state from  localStorage
+if (localStorage.getItem('currentState')) {
+  currentState = JSON.parse(localStorage.getItem('currentState'));
+}
+fetch('./data-dealer.json')
+    .then((response) => response.json())
+    .then((body) => console.log(body));
 
-
-export default class App extends Component { 
-    state = {
-        dealerInfo:{dataInfoCard},
-        isLoan: true,
-        tradeInValue:0,
-        downPayment:0,
-        zipCodeLease:220007,
-        zipCodeLoan:220008,
-        estimatedAPR: 0,
-        approxCreditScore: 750,
-        creditScoreValue : 0.95,
-        termMonthLoan: 24,
-        termMonthLease: 36,
-        annualMiles: 12000
+export default class App extends Component {
+  constructor () {
+    super();
+    this.updateZipCode();
+  } 
+    state = {dealerInfo:{dataInfoCard}, ...currentState}
+    updateZipCode() {
+      if (!localStorage.getItem('currentState')) {
+        getIpInfo().then((resp) => {
+          this.setState( {
+            zipCodeLease:resp.postal,
+            zipCodeLoan:resp.postal 
+          });
+      });
+      }
     }
     onInputChange = (inputValue, inputName) => {
       this.setState( {
@@ -83,7 +105,7 @@ export default class App extends Component {
     }
     render() {
       console.log(this.state);
-     
+      localStorage.setItem('currentState', JSON.stringify(this.state));
       const { isLoan, tradeInValue, downPayment, zipCodeLease, zipCodeLoan, estimatedAPR, approxCreditScore, creditScoreValue, termMonthLoan, termMonthLease, annualMiles, dealerInfo}  = this.state;
       const { dataInfoCard } = dealerInfo;
       const { msrp } = dataInfoCard;

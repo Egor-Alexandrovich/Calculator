@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const CopyPlugin = require('copy-webpack-plugin');
 module.exports = (env = {}) => {
 
   const { mode = 'development' } = env;
@@ -21,7 +21,11 @@ module.exports = (env = {}) => {
         title: 'Hello World',
         buildTime: new Date().toISOString(),
         template: 'public/index.html'
-      })
+      }),
+      new CopyPlugin([
+        { from: './src/data-dealer.json', to: './data-dealer.json' },
+        { from: './src/favicon.ico', to: './favicon.ico' },
+      ]),
     ];
 
     if (isProd) {
@@ -43,7 +47,17 @@ module.exports = (env = {}) => {
 
     module: {
       rules: [
-
+      //   {
+      // test: /\.json$/,
+      // exclude: /node_modules/,
+      // use: {
+      //     loader: 'file-loader',
+      //     options: {
+      //         outputPath: 'json',
+      //         name: '[name].[ext]'
+      //     }
+      //   }
+      // },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -58,7 +72,7 @@ module.exports = (env = {}) => {
             loader: 'file-loader',
             options: {
               outputPath: 'images',
-              name: '[name]-[sha1:hash:7].[ext]'
+              name: '[name].[ext]'
             }
           }
         ]
