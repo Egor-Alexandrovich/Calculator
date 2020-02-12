@@ -8,17 +8,17 @@ export default class InputText extends Component {
   onInputChange = (event) => {
     const res = /^[0-9]{1,6}$/.test(event.target.value);
     const { stateVariableName, onInputChange, msrp } = this.props;
-    if(res){
-      if((stateVariableName === 'downPayment' || stateVariableName === 'tradeInValue')){
-        this.setState( {
-          err: false 
+    if (res) {
+      if ((stateVariableName === 'downPayment' || stateVariableName === 'tradeInValue')) {
+        this.setState({
+          err: false
         });
-        if((parseInt(event.target.value) <= 0.25*msrp)) {
+        if ((parseInt(event.target.value) <= 0.25 * msrp)) {
           const term = parseInt(event.target.value);
           onInputChange(term, stateVariableName);
         } else {
-          this.setState( {
-            err: true 
+          this.setState({
+            err: true
           });
         }
       } else {
@@ -26,38 +26,38 @@ export default class InputText extends Component {
         onInputChange(term, stateVariableName);
       }
     } else {
-      if(event.target.value.length === 0){
-        const term  = 0;
+      if (event.target.value.length === 0) {
+        const term = 0;
         onInputChange(term, stateVariableName);
       }
-      if(stateVariableName === 'downPayment' || stateVariableName === 'tradeInValue') {
-        this.setState( {
-          err: true 
+      if (stateVariableName === 'downPayment' || stateVariableName === 'tradeInValue') {
+        this.setState({
+          err: true
         });
       }
     }
   };
   render() {
-    const {err} = this.state;
+    const { err } = this.state;
     let elem;
     let elemCurrency
     const { isLoan, headerLabel, value, currency, currencyPosition } = this.props;
-    const clazz = isLoan ? 'loan': 'lease';
-    const clazz2 = isLoan ? 'loan-item-input': '';
-    if(err){elem = <span className="error-measage">value can’t be greater than ¼ of MSRP</span>}
-    if(currency) {elemCurrency = <span className="currency">{currency}</span>}
+    const clazz = isLoan ? 'loan' : 'lease';
+    const clazz2 = isLoan ? 'loan-item-input' : '';
+    if (err) { elem = <span className="error-measage">value can’t be greater than ¼ of MSRP</span> }
+    if (currency) { elemCurrency = <span className="currency">{currency}</span> }
     return (
-    <div className={`${clazz}-item ${clazz2}`} >
+      <div className={`${clazz}-item ${clazz2}`} >
         <h2 className="input-header">{headerLabel}</h2>
-        <div className ={`input-wrapper ${currencyPosition}`}>
+        <div className={`input-wrapper ${currencyPosition}`}>
           {elemCurrency}
           <input className={`${clazz}-input`}
-                type="text" 
-                value= {value}
-                onChange ={ this.onInputChange }/>
+            type="text"
+            value={value}
+            onChange={this.onInputChange} />
         </div>
         {elem}
-    </div>
+      </div>
     );
   }
 }
