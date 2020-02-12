@@ -5,8 +5,8 @@ import Tabs from '../tabs';
 import InputText from '../input-text';
 import InputBtnOrNumber from '../input-btn-or-number';
 
-const Calculator = ({isLoan, msrp, tradeInValue, downPayment, zipCodeLease, zipCodeLoan, estimatedAPR, approxCreditScore, creditScoreValue, termMonthLoan, termMonthLease, annualMiles, onSwitchTab, onInputChange, getTermMonthLoan, getApproxValue, getApproxValueLease, getMonthValueLease, getAnnualMiles }) => {
-
+const Calculator = ({isLoan, dealerInfo, tradeInValue, downPayment, zipCodeLease, zipCodeLoan, estimatedAPR, approxCreditScore, creditScoreValue, termMonthLoan, termMonthLease, annualMiles, onSwitchTab, onInputChange, getTermMonthLoan, getApproxValue, getApproxValueLease, getMonthValueLease, getAnnualMiles }) => {
+    const { msrp } = dealerInfo;
     const buttonsASC = [
         {name:['Poor','639 or less'], label:1.2},
         {name:['Fair','640-699'], label:1.05},

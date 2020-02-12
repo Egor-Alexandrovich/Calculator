@@ -1,8 +1,12 @@
 import React from 'react';
 import './info-card.css';
 
-const InfoCard = ({dealerInfo, isLoan, monthlyPaymentLease, monthlyPaymentLoan, taxesLease, taxesLoan}) => {
+const InfoCard = ({dealerInfo, isLoan, tradeInValue, downPayment, annualMiles, creditScoreValue, termMonthLease, termMonthLoan, estimatedAPR, zipCodeLease, zipCodeLoan  }) => {
     const { msrp, VehicleName, DealerName, DealerPhoneNumber, DealerRating } = dealerInfo;
+    const monthlyPaymentLease = Math.round(((msrp - tradeInValue - downPayment) * annualMiles * creditScoreValue) / (10000 * termMonthLease));
+    const monthlyPaymentLoan = Math.round((msrp - tradeInValue - downPayment) / (termMonthLoan * creditScoreValue * (1 + estimatedAPR / 100)));
+    const taxesLease = String(zipCodeLease).split('').map(num => num * 11);
+    const taxesLoan = String(zipCodeLoan).split('').map(num => num * 11);
     let MonthlyPayment = '';
     let taxes = '';
     isLoan ? MonthlyPayment = monthlyPaymentLoan : MonthlyPayment = monthlyPaymentLease;
