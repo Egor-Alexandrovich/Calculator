@@ -1,0 +1,16 @@
+.calculator {
+    width: 70%;
+    border: solid 1px #c7b299;
+    box-sizing: border-box;
+}
+.lease-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width:720px) {
+    .calculator {
+        width: 100%;
+    }
+}

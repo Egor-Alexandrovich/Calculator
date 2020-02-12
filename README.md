@@ -1,1 +1,1 @@
-# Calculator
+# Calculator by Egor Alexandrovich

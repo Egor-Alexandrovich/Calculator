@@ -1,0 +1,38 @@
+.info-card {
+    width: 30%;
+    padding: 30px 0;
+    border: solid 1px #c7b299;
+    box-sizing: border-box;
+}
+.info-card-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0.5rem;
+    color: #c7b299;
+}
+.dealer-info {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0.5rem;
+    color: #838383;
+}
+.dealer-info-item {
+    padding: 10px 0;
+}
+.tel {
+    font-size: 1rem;
+    color: #7db2dd;
+}
+@media (max-width:720px) {
+    .info-card {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 1.8rem;
+    }
+    .tel {
+        font-size: 2rem;
+    }
+    .dealer-info {
+        padding: 10px 0.5rem;
+    }
+}
